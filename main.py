@@ -1,4 +1,10 @@
 # Chapter 9. Page 410. Helper function
+# Run this program in cmd (see below):
+# cd C:\Users\User\PycharmProjects\pythonProject53_ch9_page410_crazy_libs_v2
+# Python3 main.py lib.txt
+import sys
+
+
 def make_crazy_lib(filename):
     # If it encounters a file exception it will return None.
     try:    # exception for wrong file name, change name lib.txt to test it
@@ -45,7 +51,7 @@ def process_line(line):
     return processed_line + '\n'
 
 
-def save_crazy_lib(filename, text): # test comment
+def save_crazy_lib(filename, text):  # test comment
     try:
         file = open(filename, 'w')
         file.write(text)
@@ -61,12 +67,16 @@ def strip_test(line_test):
 
 
 def main():
-    filename = 'lib.txt'
-    lib = make_crazy_lib(filename)
-    # If function make_crazy_lib() encounters a file exception (wrong filename) it will return None. Page 421.
-    if (lib != None):
-        save_crazy_lib('crazy_' + filename, lib)
-    # print(lib)
+    if len(sys.argv) != 2:      # The amount of arguments in command line
+        print("main.py <filename>")
+    else:
+        filename = sys.argv[1]
+        lib = make_crazy_lib(filename)
+        # If function make_crazy_lib() encounters a file exception (wrong filename) it will return None. Page 421.
+        if (lib != None):
+            save_crazy_lib('crazy_' + filename, lib)
+    # filename = 'lib.txt'
+        # print(lib)
     # strip_test('?!fine be that ? way!!!!?$?')
     # word_2_test = "running"
     # print(word_2_test)
