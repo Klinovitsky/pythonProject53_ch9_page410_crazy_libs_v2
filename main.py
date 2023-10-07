@@ -1,6 +1,6 @@
 # Chapter 9. Page 410. Helper function
 def make_crazy_lib(filename):
-    try:
+    try:    # exception for wrong file name
         file = open(filename, 'r')
         text = ''
 
