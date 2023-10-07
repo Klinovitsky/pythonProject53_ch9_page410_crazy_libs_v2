@@ -1,6 +1,7 @@
 # Chapter 9. Page 410. Helper function
 def make_crazy_lib(filename):
-    try:    # exception for wrong file name
+    # If it encounters a file exception it will return None.
+    try:    # exception for wrong file name, change name lib.txt to test it
         file = open(filename, 'r')
         text = ''
 
@@ -15,6 +16,7 @@ def make_crazy_lib(filename):
         print("Sorry", filename, 'is a directory.')
     except:
         print("Sorry, could not read", filename)
+
 
 placeholders = ['NOUN', 'ADJECTIVE', 'VERB_ING', 'VERB']
 
@@ -43,6 +45,15 @@ def process_line(line):
     return processed_line + '\n'
 
 
+def save_crazy_lib(filename, text):
+    try:
+        file = open(filename, 'w')
+        file.write(text)
+        file.close()
+    except:
+        print("Sorry, couldn't write file", filename)
+
+
 # It's just for test strip method
 def strip_test(line_test):
     hello = line_test.strip('!?$')
@@ -50,8 +61,12 @@ def strip_test(line_test):
 
 
 def main():
-    lib = make_crazy_lib('lib.txt')
-    print(lib)
+    filename = 'lib.txt'
+    lib = make_crazy_lib(filename)
+    # If function make_crazy_lib() encounters a file exception (wrong filename) it will return None. Page 421.
+    if (lib != None):
+        save_crazy_lib('crazy_' + filename, lib)
+    # print(lib)
     # strip_test('?!fine be that ? way!!!!?$?')
     # word_2_test = "running"
     # print(word_2_test)
